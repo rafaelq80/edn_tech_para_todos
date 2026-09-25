@@ -10,6 +10,15 @@
 
 
 
+> [!TIP]
+>
+> **Como copiar, colar e editar comandos no Terminal:**
+>
+> - **Para copiar:** Selecione o comando e pressione `Ctrl + C` (ou clique no botão **Copiar** no canto superior da caixa de código).
+> - **Para colar:** Pressione `Ctrl + V` (ou `Shift + Insert` / `Ctrl + Shift + V`), ou simplesmente clique com o **botão direito do mouse** dentro da janela do Terminal.
+> - **Para navegar e editar:** Use as setas `⬅` e `➡` para mover o cursor caractere por caractere. Para mover rapidamente entre palavras inteiras, segure `Ctrl` enquanto pressiona as setas (`Ctrl + ⬅` ou `Ctrl + ➡`). Use `Home` para ir ao início da linha e `End` para ir ao final.
+> - **Uso do mouse:** Você pode usar o mouse para selecionar trechos de texto clicando e arrastando.
+
 Verifique a data, a hora atual e as especificações da máquina antes de iniciar.
 
 1. Exiba a data atual do sistema:
@@ -18,11 +27,36 @@ Verifique a data, a hora atual e as especificações da máquina antes de inicia
 date /t
 ```
 
+> A opção `/t` faz com que o comando `date` apenas exiba a data atual, sem solicitar a digitação de uma nova data.
+
+<br />
+
+> [!TIP]
+>
+> **Para exibir a ajuda para um comando específico e consultar as suas opções:** 
+>
+> - Adicione `/?` ao final do comando:
+>
+> ```cmd
+> date /?
+> ```
+>
+> - Ou ou digite a palavra `help` antes dele:
+>
+> ```cmd
+> help date
+> ```
+>
+
+<br />
+
 2. Exiba a hora atual do sistema:
 
 ```cmd
 time /t
 ```
+
+> A opção `/t` faz com que o comando `time` apenas exiba a hora atual, sem solicitar a digitação de uma nova hora.
 
 3. Obtenha informações detalhadas sobre o sistema operacional e hardware:
 
@@ -47,6 +81,16 @@ echo %username%
 ```cmd
 cls
 ```
+
+<br />
+
+> [!TIP]
+>
+> **Histórico de Comandos:**
+>
+> - **Para navegar pelo histórico:** Use as setas para cima `⬆` e para baixo `⬇` para alternar entre os comandos digitados anteriormente.
+> - **Busca rápida:** Pressione `F7` para abrir uma lista com o histórico recente ou use `Ctrl + R` para pesquisar um comando específico digitando parte dele.
+> - **Persistência:** Geralmente, o histórico de comandos não fica salvo depois que você fecha o Terminal ou reinicia o computador.
 
 <br />
 
@@ -136,6 +180,14 @@ echo Arquivo de Teste 2 > arquivo2.txt
 echo Conteudo do Relatorio > relatorio.txt
 ```
 
+> [!TIP]
+>
+> Para criar um arquivo `txt` vazio, utilize o comando:
+>
+> ```cmd
+> type nul > texte.txt
+> ```
+
 3. Visualize todo o conteúdo criado usando variações do `dir`:
 
 - Listar todos os arquivos da pasta:
@@ -162,25 +214,43 @@ dir /ad
 dir /a:-d
 ```
 
-- Listar arquivos ocultos:
-
-```cmd
-dir /a
-```
-
-- Listar apenas arquivos txt:
+- Listar apenas os arquivos `.txt` na pasta atual:
 
 ```cmd
 dir *.txt
 ```
 
-- Listar todos os arquivos txt em todas as pastas do sistema:
+- Listar todos os arquivos `.txt` em todas as subpastas da pasta atual:
 
 ```cmd
 dir *.txt /s
 ```
 
-4. Para abrir o arquivo `arquivo1.txt` no Notepad, utilize o comando:
+>**Outras opções do comando `dir`:**
+>
+>- Listar todos os arquivos `.txt` do computador:
+>
+>```cmd
+>dir c:\ *.txt /s
+>```
+>
+>> [!TIP]
+>>
+>> **Interromper a busca:** Pressione a combinação de teclas `Ctrl + C` para cancelar a listagem a qualquer momento.
+>
+>- Listar todos os arquivos `.txt` do computador com paginação (pausa a cada tela):
+>
+>```cmd
+>dir c:\ *.txt /s /p
+>```
+>
+>- Listar todos os arquivos da pasta atual (incluindo os arquivos ocultos):
+>
+>```cmd
+>dir /a
+>```
+
+4. Para editar o arquivo `arquivo1.txt` no Notepad (Bloco de Notas), utilize o comando:
 
 ```cmd
 notepad arquivo1.txt
@@ -320,23 +390,24 @@ cls
 
 ## ✅ Tabela Comparativa - CMD vs PowerShell
 
+| **Operação**             | **Comando CMD**               | **Comando PowerShell (Nativo)**                      | **Alias no PowerShell**         |
+| ------------------------ | ----------------------------- | ---------------------------------------------------- | ------------------------------- |
+| Exibir data atual        | `date /t`                     | `Get-Date -Format "dd/MM/yyyy"`                      | `Get-Date`                      |
+| Exibir hora atual        | `time /t`                     | `Get-Date -Format "HH:mm"`                           | `Get-Date`                      |
+| Informações do sistema   | `systeminfo`                  | `Get-ComputerInfo`                                   | `systeminfo`                    |
+| Limpar tela              | `cls`                         | `Clear-Host`                                         | `cls` / `clear`                 |
+| Criar pasta              | `md pasta`                    | `New-Item -ItemType Directory -Name "pasta"`         | `md`                            |
+| Entrar / Subir pasta     | `cd pasta` / `cd ..`          | `Set-Location -Path "pasta"` / `Set-Location ..`     | `cd` / `cd ..`                  |
+| Listar conteúdo          | `dir`                         | `Get-ChildItem`                                      | `dir` / `ls`                    |
+| Escrever em arquivo      | `echo Texto > arquivo.txt`    | `Set-Content -Path "arquivo.txt" -Value "Texto"`     | `echo "Texto" > arquivo.txt`    |
+| Criar arquivo vazio      | `type nul > arquivo.txt`      | `New-Item -ItemType File -Name "arquivo.txt"`        | `ni arquivo.txt -ItemType File` |
+| Exibir ajuda do comando  | `help comando` / `comando /?` | `Get-Help comando`                                   | `help` / `man`                  |
+| Abrir no Bloco de Notas  | `notepad arquivo.txt`         | `Start-Process notepad "arquivo.txt"`                | `notepad`                       |
+| Renomear Arquivo/Pasta   | `ren antigo.txt novo.txt`     | `Rename-Item -Path "antigo.txt" -NewName "novo.txt"` | `ren` / `rnm`                   |
+| Copiar Arquivo           | `copy arq.txt destino\`       | `Copy-Item -Path "arq.txt" -Destination "destino\"`  | `copy` / `cp`                   |
+| Copiar Pasta inteira     | `xcopy pasta1 pasta2 /E /I`   | `Copy-Item -Path "pasta1" -Destination "pasta2"`     | `copy -Recurse` / `cp -r`       |
+| Mover Arquivo ou Pasta   | `move item destino\`          | `Move-Item -Path "item" -Destination "destino\"`     | `move` / `mv`                   |
+| Deletar arquivo          | `del arquivo.txt`             | `Remove-Item -Path "arquivo.txt"`                    | `del` / `rm`                    |
+| Remover pasta e conteúdo | `rmdir /s /q pasta`           | `Remove-Item -Path "pasta" -Recurse -Force`          | `rmdir -Recurse` / `rm -r`      |
+| Estrutura em árvore      | `tree /f`                     | `Get-ChildItem -Recurse`                             | `tree`                          |
 
-
-| **Operação**               | **Comando CMD**             | **Comando PowerShell (Nativo)**                           | **Alias no PowerShell**      |
-| -------------------------- | --------------------------- | --------------------------------------------------------- | ---------------------------- |
-| Exibir data atual          | `date /t`                   | `Get-Date -Format "dd/MM/yyyy"`                           | `Get-Date`                   |
-| Exibir hora atual          | `time /t`                   | `Get-Date -Format "HH:mm"`                                | `Get-Date`                   |
-| Informações do sistema     | `systeminfo`                | `Get-ComputerInfo`                                        | `systeminfo`                 |
-| Limpar tela                | `cls`                       | `Clear-Host`                                              | `cls` / `clear`              |
-| Criar pasta                | `md pasta`                  | `New-Item -ItemType Directory -Name "pasta"`              | `md`                         |
-| Entrar / Subir pasta       | `cd pasta` / `cd ..`        | `Set-Location -Path "pasta"` / `Set-Location ..`          | `cd` / `cd ..`               |
-| Listar conteúdo            | `dir`                       | `Get-ChildItem`                                           | `dir` / `ls`                 |
-| Escrever em arquivo        | `echo Texto > arquivo.txt`  | `Set-Content -Path "arquivo.txt" -Value "Texto"`          | `echo "Texto" > arquivo.txt` |
-| Abrir no Bloco de Notas    | `notepad arquivo.txt`       | `Start-Process notepad "arquivo.txt"`                     | `notepad`                    |
-| **Renomear Arquivo/Pasta** | `ren antigo.txt novo.txt`   | `Rename-Item -Path "antigo.txt" -NewName "novo.txt"`      | `ren` / `rnm`                |
-| **Copiar Arquivo**         | `copy arq.txt destino\`     | `Copy-Item -Path "arq.txt" -Destination "destino\"`       | `copy` / `cp`                |
-| **Copiar Pasta inteira**   | `xcopy pasta1 pasta2 /E /I` | `Copy-Item -Path "pasta1" -Destination "pasta2" -Recurse` | `copy -Recurse` / `cp -r`    |
-| **Mover Arquivo ou Pasta** | `move item destino\`        | `Move-Item -Path "item" -Destination "destino\"`          | `move` / `mv`                |
-| Deletar arquivo            | `del arquivo.txt`           | `Remove-Item -Path "arquivo.txt"`                         | `del` / `rm`                 |
-| Remover pasta e conteúdo   | `rmdir /s /q pasta`         | `Remove-Item -Path "pasta" -Recurse -Force`               | `rmdir -Recurse` / `rm -r`   |
-| Estrutura em árvore        | `tree /f`                   | `Get-ChildItem -Recurse`                                  | `tree`                       |
