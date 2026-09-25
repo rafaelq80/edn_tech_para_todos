@@ -14,9 +14,9 @@
 >
 > **Como copiar, colar e editar comandos no Terminal:**
 >
-> - **Para copiar:** Selecione o comando e pressione `Ctrl + C` (ou clique no botão **Copiar** no canto superior da caixa de código).
-> - **Para colar:** Pressione `Ctrl + V` (ou `Shift + Insert` / `Ctrl + Shift + V`), ou simplesmente clique com o **botão direito do mouse** dentro da janela do Terminal.
-> - **Para navegar e editar:** Use as setas `⬅` e `➡` para mover o cursor caractere por caractere. Para mover rapidamente entre palavras inteiras, segure `Ctrl` enquanto pressiona as setas (`Ctrl + ⬅` ou `Ctrl + ➡`). Use `Home` para ir ao início da linha e `End` para ir ao final.
+> - **Para copiar o comando deste guia:** Selecione o comando e pressione `Ctrl + C` (ou clique no botão **Copiar** no canto superior da caixa de código).
+> - **Para colar no Terminal:** Pressione `Ctrl + V` (ou `Shift + Insert` / `Ctrl + Shift + V`), ou simplesmente clique com o **botão direito do mouse** dentro da janela do Terminal.
+> - **Para navegar e editar um comando no Terminal:** Use as setas `⬅` e `➡` para mover o cursor caractere por caractere. Para mover rapidamente entre palavras inteiras, segure `Ctrl` enquanto pressiona as setas (`Ctrl + ⬅` ou `Ctrl + ➡`). Use `Home` para ir ao início da linha e `End` para ir ao final.
 > - **Uso do mouse:** Você pode usar o mouse para selecionar trechos de texto clicando e arrastando.
 
 Verifique a data, a hora atual e as especificações da máquina antes de iniciar.
