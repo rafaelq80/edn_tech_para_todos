@@ -1,4 +1,4 @@
-# Laboratório Prático - Processos e Redes no Windows CMD
+# Laboratório Prático - Gerenciamento de Processos e Protocolos de Rede no Windows CMD
 
 
 
