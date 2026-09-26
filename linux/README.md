@@ -126,6 +126,34 @@ Ao executar pela primeira vez, o sistema pedirá a sua senha de usuário para co
 
 <br />
 
+> [!TIP]
+>
+> Se durante a instalação do WSL2 ocorreu algum problema com o cadastro da senha ou você não se lembre da senha, siga as instruções abaixo para alterar a senha do seu usuário:
+>
+> 1.  Abra o **Windows Power Shell**
+> 2. Execute o comando abaixo para entrar no WSL2 no modo Super Usuário (root)
+>
+> ```powershell
+> wsl -u root
+> ```
+>
+> 3. Para alterar a senha, utilize o comando abaixo:
+>
+> ```powershell
+> passwd nome_do_usuario
+> ```
+>
+> 4. Cadastre a nova senha 
+> 5. Digite o comando abaixo para sair do WSL2 - Modo Super Usuário
+>
+> ```powershell
+> exit
+> ```
+>
+> 6. Volte para o Terminal do WSL2 e teste a nova senha
+
+<br />
+
 ### Casos de Uso Mais Comuns
 
 - **Instalar ou atualizar programas:**
