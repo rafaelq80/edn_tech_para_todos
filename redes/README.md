@@ -51,6 +51,16 @@ Inicie, monitore e finalize processos diretamente pela linha de comando.
 tasklist
 ```
 
+<br />
+
+> [!IMPORTANT]
+>
+> A coluna **Identificador** representa o **PID** do processo, que se trata de um **Identificador de Processo**, ou seja, um número inteiro exclusivo atribuído pelo sistema operacional a cada programa ou serviço que está em execução.
+>
+> O PID permite que o sistema gerencie recursos, controle permissões e permita que o usuário ou outros programas finalizem ou monitorem tarefas específicas.
+
+<br />
+
 2. Iniciar uma instância do Bloco de Notas para teste:
 
 ```cmd
@@ -182,6 +192,66 @@ netstat -ano
 ```cmd
 netstat -ano | findstr "ESTABLISHED"
 ```
+
+3. Filtrar apenas as conexões TCP que estão em uma porta específica:
+
+```cmd
+netstat -ano | findstr :443
+netstat -ano | findstr :80
+```
+
+<br />
+
+> [!NOTE]
+>
+> Uma **porta TCP/IP** é um número de 16 bits (de 0 a 65535) usado para identificar um serviço ou aplicação específica dentro de um dispositivo conectado à rede. Enquanto o endereço IP localiza a maquina na rede, a porta direciona o tráfego de dados para o programa correto dentro dessa máquina.
+>
+> ### Principais Portas TCP/IP
+>
+> | **Porta**     | **Protocolo** | **Nome**             | **Descrição**                                                |
+> | ------------- | ------------- | -------------------- | ------------------------------------------------------------ |
+> | **20 / 21**   | TCP           | **FTP**              | Transferência de arquivos (*File Transfer Protocol*)         |
+> | **22**        | TCP           | **SSH / SFTP**       | Acesso remoto seguro e transferência segura de arquivos      |
+> | **23**        | TCP           | **Telnet**           | Acesso remoto em texto puro (não criptografado)              |
+> | **25**        | TCP           | **SMTP**             | Envio de e-mails entre servidores                            |
+> | **53**        | TCP / UDP     | **DNS**              | Resolução de nomes de domínio para endereços IP              |
+> | **67 / 68**   | UDP           | **DHCP**             | Atribuição dinâmica e automática de endereços IP             |
+> | **80**        | TCP           | **HTTP**             | Navegação web padrão (não criptografada)                     |
+> | **110**       | TCP           | **POP3**             | Recebimento de e-mails (baixa as mensagens do servidor)      |
+> | **123**       | UDP           | **NTP**              | Sincronização de relógio e sistema de hora na rede           |
+> | **143**       | TCP           | **IMAP**             | Recebimento de e-mails (sincroniza em tempo real com o servidor) |
+> | **161 / 162** | UDP           | **SNMP**             | Monitoramento e gerenciamento de dispositivos de rede        |
+> | **389**       | TCP / UDP     | **LDAP**             | Serviço de diretório e autenticação de usuários              |
+> | **443**       | TCP           | **HTTPS**            | Navegação web segura (criptografada via TLS/SSL)             |
+> | **445**       | TCP           | **SMB**              | Compartilhamento de arquivos e impressoras em redes Windows  |
+> | **3306**      | TCP           | **MySQL**            | Conexão com banco de dados MySQL                             |
+> | **3389**      | TCP           | **RDP**              | Área de trabalho remota da Microsoft (*Remote Desktop*)      |
+> | **5432**      | TCP           | **PostgreSQL**       | Conexão com banco de dados PostgreSQL                        |
+> | **8080**      | TCP           | **HTTP Proxy / Alt** | Porta alternativa muito comum para servidores web e proxies  |
+
+<br />
+
+4. Descubra qual programa usa a conexão com base no PID
+
+```cmd
+tasklist | findstr <PID>
+```
+
+> Para obter o PID do processo, utilize o comando **`netstat`**
+
+5. Execute os 3 comandos abaixo para testar a conexão:
+
+```cmd
+curl -v https://google.com:443
+curl -v http://google.com:80
+curl -v https://google.com:22
+```
+
+> ### O que aconteceu em cada conexão?
+>
+> - **Porta 443 (HTTPS):** Conexão bem-sucedida. A porta está **aberta** e aceitando tráfego criptografado padrão da web.
+> - **Porta 80 (HTTP):** Conexão bem-sucedida. O servidor aceitou a conexão HTTP padrão na porta 80 e retornou um redirecionamento (status 301/302) para a versão HTTPS.
+> - **Porta 22 (SSH):** A conexão **falhou** (timeout ou conexão recusada). A porta está fechada ou bloqueada por firewall, pois os servidores web públicos do Google não expõem o serviço de SSH para a internet.
 
 <br />
 

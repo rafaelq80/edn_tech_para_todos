@@ -508,6 +508,43 @@ tree -f
 
 <br />
 
+> [!NOTE]
+>
+> ### Como o comando `mv` sabe que ele deve renomear ou mover?
+>
+> 
+>
+> O comando `mv` no Linux/Unix determina se deve **renomear** ou **mover** analisando a **natureza do destino** (se o destino existe e se é um diretório) .
+>
+> A regra segue três cenários principais:
+>
+> 1. **Se o destino NÃO existe**
+>
+> O `mv` interpreta o destino como um novo nome. O arquivo ou diretório é **renomeado**.
+>
+> - **Exemplo:** `mv arquivo.txt novo_nome.txt`
+> - Se `novo_nome.txt` não existir, `arquivo.txt` passa a se chamar `novo_nome.txt`.
+>
+> 
+>
+>  2. **Se o destino existe e É UM DIRETÓRIO**
+>
+> O `mv` entende que você quer transferir a fonte para dentro dessa pasta. O arquivo/diretório é **movido** mantendo o seu nome original.
+>
+> - **Exemplo:** `mv arquivo.txt /caminho/para/pasta/`
+> - O `arquivo.txt` será colocado dentro de `pasta/`.
+>
+> 
+>
+>  3. **Se o destino existe e NÃO É UM DIRETÓRIO (é um arquivo)**
+>
+> O `mv` entende que você quer **substituir (sobrescrever)** o arquivo de destino pelo arquivo de origem.
+>
+> - **Exemplo:** `mv foto1.png foto2.png`
+> - Se `foto2.png` já existir, o conteúdo de `foto1.png` substitui `foto2.png` (a menos que a opção `-i` esteja ativa para pedir confirmação).
+
+<br />
+
 ## ✅ Manipulação de Pastas (Renomear, Copiar e Mover)
 
 
