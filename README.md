@@ -22,5 +22,9 @@
         <td><img src="https://i.imgur.com/fu9QxlT.png" title="source: imgur.com"/></td>
         <td><a href="git/README.md">Git</a></td>
     </tr>
+     <tr>
+        <td><img src="https://i.imgur.com/bGykRNq.png" title="source: imgur.com"/></td>
+        <td><a href="assinatura/README.md">Guia de prompts - Assinatura de E-mail</a></td>
+    </tr>
 </table>
 
