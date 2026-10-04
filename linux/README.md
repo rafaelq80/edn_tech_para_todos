@@ -636,12 +636,43 @@ ls -l
 
 6. **Alterar Permissões (`chmod`):**
 
-Remova a permissão de leitura do "grupo" e de "outros usuários" nos arquivos `acesso_negado.txt` e `aluno.txt`, usando o formato octal (`600` = Dono: leitura/escrita, Grupo: leitura, Outros: nenhuma):
+Remova a permissão de leitura do "grupo" e dos "outros usuários" nos arquivos `acesso_negado.txt` e `aluno.txt`, usando o formato octal (`600` = **Dono:** leitura/escrita, **Grupo:** nenhuma, **Outros:** nenhuma):
 
 ```bash
 chmod 600 acesso_negado.txt
 chmod 600 aluno.txt
 ```
+
+> [!TIP]
+>
+> ### Formato Octal das Permissões no Linux
+>
+> No Linux, as permissões de arquivos e diretórios também podem ser representadas por números no formato octal, utilizando valores de 0 a 7.
+>
+> Cada permissão possui um valor:
+>
+> | Permissão           | Valor |
+> | ------------------- | ----- |
+> | Leitura (`r`)       | 4     |
+> | Escrita (`w`)       | 2     |
+> | Execução (`x`)      | 1     |
+> | Sem permissão (`-`) | 0     |
+>
+> Os valores são somados para representar as permissões de cada categoria de usuário:
+>
+> - Proprietário (u): primeiro dígito.
+> - Grupo (g): segundo dígito.
+> - Outros (o): terceiro dígito.
+>
+> **Exemplo:** `chmod 754 arquivo.txt`
+>
+> | Categoria    | Valor     | Permissões                          |
+> | ------------ | --------- | ----------------------------------- |
+> | Proprietário | 7 (4+2+1) | Leitura, escrita e execução (`rwx`) |
+> | Grupo        | 5 (4+1)   | Leitura e execução (`r-x`)          |
+> | Outros       | 4         | Somente leitura (`r--`)             |
+>
+> Assim, o comando `chmod 754 arquivo.txt` define as permissões do arquivo utilizando a representação numérica.
 
 7. **Alterar Propriedade (`chown`):**
 
