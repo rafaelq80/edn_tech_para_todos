@@ -9,6 +9,49 @@
 
 <br />
 
+## Versão do Windows 10
+
+
+
+> [!WARNING]
+>
+> Este passo é exclusivo para computadores com **Windows 10**. Se o seu computador possui o **Windows 11** instalado, siga para o próximo passo.
+
+<br />
+
+1. Abra o **PowerShell** e execute o comando abaixo para descobrir qual é a versão do seu Windows 10
+
+```powershell
+Get-CimInstance Win32_OperatingSystem | Select-Object Caption, Version, BuildNumber
+```
+
+2. Se a versão for a **Build 19041** ou superior, pode instalar o WSL2 tranquilamente
+3. Caso não seja, exceute o **Windows Update** para atualizar o Windows e verifique novamente
+
+<br />
+
+## Virtualização
+
+
+
+1. Abra o **Gerenciador de Tarefas** pressionando as teclas `Ctrl + Shift + Esc` 
+
+![](https://i.imgur.com/2FEe75N.png)
+
+2. Na guia **Desempenho**, clique na guia **CPU** e verifique se o campo **Virtualização** está **Habilitado**, como mostra a imagem abaixo:
+
+![](https://i.imgur.com/LEOGNOi.png)
+
+3. Caso esteja, não precisa mexer na BIOS/UEFI.
+
+<br />
+
+> [!WARNING]
+>
+> No final deste guia, na seção **Problemas Comuns**, tem um tutorial explicando como habilitar a virtualização.
+
+<br />
+
 ## Instalação
 
 
@@ -19,7 +62,7 @@
 
 2. **Instale o WSL:** execute o comando abaixo no Terminal (Modo Administrador)
 
-```cmd
+```powershell
 wsl --install
 ```
 
@@ -77,22 +120,107 @@ wsl --install
 
 ## Problemas comuns
 
+
+
+### ❌A Virtualização não está ativa no sistema 
+
+
+
+1. Abra o **PowerShell** e execute o comando abaixo para descobrir qual é o fabricante da placa mãe do seu computador, caso você não saiba
+
+```powershell
+Get-CimInstance Win32_ComputerSystem | Select-Object Manufacturer, Model
+```
+
+2. Reinicie o computador e pressione repetidamente a tecla de acesso a BIOS/UEFI do seu computador assim que o logotipo do fabricante aparecer. 
+
+![](https://i.imgur.com/ptDCrax.png)
+
+Na tabela abaixo, você confere a tecla de acesso a BIOS/UEFI das placas-mãe e notebooks mais populares do mercado:
+
+| Marca            | Tecla de Acesso                                       |
+| ---------------- | ----------------------------------------------------- |
+| ASUS             | Del ou F2                                             |
+| Gigabyte / AORUS | Del ou F2                                             |
+| MSI              | Del ou F2                                             |
+| ASRock           | Del ou F2                                             |
+| Dell / Alienware | F2                                                    |
+| HP               | F10                                                   |
+| Lenovo           | F1 (ThinkPad) / F2 ou Fn + F2 (IdeaPad, Yoga, Legion) |
+| Acer             | F2                                                    |
+
+3. Será aberta a janela BIOS/UEFI. No exemplo abaixo, vemos a BIOS/UEFI de um **Notebook ThinkPad Lenovo**:
+
+![](https://i.imgur.com/KBZ96EN.png)
+
 <br />
 
-### ❌Erro de virtualização 
+> [!TIP]
+>
+> A aparência da tela da BIOS/UEFI pode ser diferente da imagem acima, dependendo do fabricante da placa-mãe.
 
-Caso você receba uma das 2 mensagens abaixo durante a instalação do WSL2 ou do Ubuntu, siga os passos a seguir.
+4. Localize na BIOS/UEFI do seu computador, uma das opções abaixo, de acordo com o processador da sua máquina:
 
-![](https://i.imgur.com/av6YKMi.png)
+- **Intel:** *Intel Virtualization Technology* ou *VT-x*
+- **AMD:** *SVM Mode* ou *AMD-V*
+- **Alguns notebooks:** *Virtualization Technology* ou *Virtualization Support*
+
+No **ThinkPad Lenovo** fica na guia **Security → Virtualization**:
+
+![](https://i.imgur.com/ruQOhW8.png)
+
+Na tabela abaixo, você confere o caminho exato para ativar a virtualização Intel (Intel VT-x / SVM / VMX) nas marcas de placas-mãe e notebooks mais populares do mercado:
+
+| Marca            | Caminho no Menu da BIOS                                      | Nome da Opção                        |
+| ---------------- | ------------------------------------------------------------ | ------------------------------------ |
+| ASUS             | Advanced Mode (F7) → Advanced → CPU Configuration            | Intel Virtualization Technology      |
+| Gigabyte / AORUS | Advanced Mode (F2) → Tweaker → Advanced CPU Settings         | Intel Virtualization Technology      |
+| MSI              | Advanced (F7) → OC → CPU Features (ou Overclocking → Processor Features) | Intel Virtualization Tech / SVM Mode |
+| ASRock           | Advanced → CPU Configuration                                 | Intel Virtualization Technology      |
+| Dell / Alienware | Virtualization Support → Virtualization                      | Intel Virtualization Technology      |
+| HP               | Advanced → Device Options (ou System Configuration)          | Virtualization Technology (VTx)      |
+| Lenovo           | Security → Virtualization                                    | Intel Virtualization Technology      |
+| Acer             | Advanced (ou System Configuration)                           | Intel VTx / Virtualization Tech      |
 
 <br />
 
-![](https://i.imgur.com/N2K281w.png)
+> [!NOTE]
+>
+> * **Processadores AMD:** Caso o seu processador seja AMD em vez de Intel, o nome da opção muda para **SVM Mode (Secure Virtual Machine) ou AMD-V**, mas o caminho nas pastas da BIOS listadas acima costumam ser o mesmo. Em caso de dúvidas, consulte o manual do no site do fabricante.
 
 <br />
 
-1. Reinicie o computador e acesse a BIOS/UEFI do seu computador
-2. Verifique na BIOS/UEFI se o *Intel VT-x* ou *AMD-V/SVM* estão ativos.
+5. Habilite a opção **Intel(R) Virtualization Technology** alterando para `Enabled`, como mostra a figura abaixo:
+
+![](https://i.imgur.com/c9LXb1P.png)
+
+<br />
+
+> [!IMPORTANT]
+>
+> No **ThinkPad T14 - Lenovo**, a opção *Intel Virtualization Technology* só pôde ser alterada com o *Kernel DMA Protection* desativado. Em **Security → Virtualization**, foi seguida a seguinte ordem:
+>
+> 1. **Kernel DMA Protection:** `Disabled`
+> 2. **Intel(R) Virtualization Technology:** `Enabled`
+> 3. **Kernel DMA Protection:** `Enabled` *(reative; a virtualização continua habilitada)*
+>
+> Ao reativar o **Kernel DMA Protection**, será perguntado se a virtualização deve ser mantida habilitada. Pressione a tecla `y` para continuar. 
+
+<br />
+
+6. Pressione **F10** (salvar e sair) e confirme com **Yes** para reiniciar o computador
+7. Verifique no **Gerenciador de Tarefas** se a virtualização foi habilitada
+
+![](https://i.imgur.com/LEOGNOi.png)
+
+<br />
+
+> [!TIP]
+>
+> **Se não funcionar**
+>
+> - **Opção não aparece:** atualize a BIOS pelo site do fabricante ou confira se o modelo do processador suporta virtualização.
+> - **Opção bloqueada (acinzentada):** pode haver senha de administrador na BIOS ou política da empresa. Isso é comum em computadores corporativos.
 
 <br />
 
