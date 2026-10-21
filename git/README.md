@@ -1,4 +1,6 @@
-# Atividade Prática: Git no Terminal CMD - Windows
+# Atividade Prática: Git no Terminal Git Bash
+
+
 
 **Objetivo:** Criar um projeto na pasta *Documentos*, versionar arquivos, desfazer commits com segurança, enviar ao GitHub, baixar alterações remotas, clonar um repositório e navegar pelo histórico de commits.
 
@@ -10,19 +12,33 @@
 
 <br />
 
+## Git Bash
+
+
+
+O Git for Windows fornece uma emulação do **Terminal BASH - Terminal padrão do Linux**, chamado de **Git Bash**, para executar os comandos Git a partir da linha de comando do Linux. O Git Bash se comporta exatamente como o Terminal BASH do ambientes LINUX. Na imagem abaixo, temos a tela do Git Bash:
+
+<div align="center"><img src="https://i.imgur.com/6zzIwgN.png" title="source: imgur.com" width="90%"/></div>
+
+Observe que o prompt do Git Bash é diferente do Git Bash.
+
+---
+
 ## Passo 1: Configuração Inicial do Git
 
-1. Abra o Terminal **Windows CMD**
+
+
+1. Abra o Terminal **Git Bash**
 
 2. Para verificar se o Git está instalado no sistema e qual é a versão, digite o comando:
 
-```cmd
+```bash
 git version
 ```
 
 3. Para listar todas as configurações do Git, digite o comando:
 
-```cmd
+```bash
 git config --list
 ```
 
@@ -38,7 +54,7 @@ git config --list
 
 4. Para configurar o seu **nome** no Git, digite o comando:
 
-```cmd
+```bash
 git config --global user.name "seu_nome"
 ```
 
@@ -46,13 +62,13 @@ git config --global user.name "seu_nome"
 
 5. Para verificar se o seu **nome** foi configurado corretamente no Git, digite o comando:
 
-```cmd
+```bash
 git config user.name
 ```
 
 6. Para configurar o seu **e-mail** no Git, digite o comando:
 
-```cmd
+```bash
 git config --global user.email "seu_email@email.com"
 ```
 
@@ -60,13 +76,13 @@ git config --global user.email "seu_email@email.com"
 
 7. Para verificar se o seu **e-mail** foi configurado corretamente no Git, digite o comando:
 
-```cmd
+```bash
 git config user.email
 ```
 
 8. Para configurar o **nome padrão da branch principal** do repositório Git, digite o comando:
 
-```cmd
+```bash
 git config --global init.defaultBranch main
 ```
 
@@ -74,13 +90,13 @@ git config --global init.defaultBranch main
 
 9. Para verificar se o **nome padrão da branch principal** foi configurado como main, digite o comando:
 
-```cmd
+```bash
 git config init.defaultBranch
 ```
 
 10. Para utilizar a estratégia de mesclagem padrão ao invés do **rebase**, execute o comando:
 
-```cmd
+```bash
 git config --global pull.rebase false
 ```
 
@@ -96,86 +112,92 @@ git config --global pull.rebase false
 
 ## Passo 2: Criando a Estrutura de Pastas e Arquivos
 
-1. Execute os comandos a seguir no CMD para acessar a pasta **Documentos**, criar o diretório do exercício e navegar até a pasta:
 
-```cmd
-cd %USERPROFILE%\Documents
+
+1. Execute a sequência de comandos a seguir no Git Bash para acessar a pasta do seu usuário, criar a pasta do exercício (**aula_git**) e navegar até a pasta:
+
+```bash
+cd ~
 mkdir aula_git
 cd aula_git
 ```
 
-<br />
-
-> [!TIP]
->
-> Se sua pasta Documentos estiver no OneDrive, use os comandos abaixo:
->
-> ```cmd
-> cd %USERPROFILE%\OneDrive\Documents
-> mkdir aula_git
-> cd aula_git
-> ```
-
-<br />
-
 2. Crie a pasta **docs**:
 
-```cmd
+```bash
 mkdir docs
 ```
 
 3. Crie os dois arquivos abaixo dentro da pasta **aula_git**:
 
-```cmd
-echo # Projeto Aula Git > README.md
-echo print("Ola, Git!") > app.py
+```bash
+echo '# Projeto Aula Git' > README.md
+echo 'print("Ola, Git!")' > main.py
+```
+
+4. Digite o comando abaixo para visualizar a estrutura de arquivos e pastas:
+
+```bash
+ls
+```
+
+5. O comando `ls` exibirá o seguinte conteúdo:
+
+```bash
+docs  main.py  README.md
 ```
 
 ---
 
 ## Passo 3: Inicializando o Repositório e Primeiro Commit
 
+
+
 1. **Inicialize o repositório Git:**
 
-   ```cmd
+   ```bash
    git init
    ```
 
+> Observe que aparece a mensagem **(main)** no prompt do Git Bash, indicando que a pasta `aula_git` se tronou um repositório git.
+>
+> ![](https://i.imgur.com/jXoJeZh.png)
+
 2. **Verifique o status do repositório:**
 
-   ```cmd
+   ```bash
    git status
    ```
 
-   > *Observe que os arquivos `README.md` e `app.py` aparecem em vermelho como "untracked".*
+   > *Observe que os arquivos `README.md` e `main.py` aparecem em vermelho como "untracked".*
    >
-   > ![](https://ik.imagekit.io/46hheoxm3/2026-10-13%2001_28_13-Untitled_%20-%20Typora.png)
+   > ![](https://i.imgur.com/VDWhweY.png)
 
 3. **Adicione os arquivos para a Staging Area:**
 
-   ```cmd
+   ```bash
    git add .
    ```
 
 4. **Verifique o status novamente:**
 
-   ```cmd
+   ```bash
    git status
    ```
 
    > *Os arquivos agora aparecem em verde, prontos para o commit.*
    >
-   > ![](https://ik.imagekit.io/46hheoxm3/2026-10-13%2001_46_52-Untitled_%20-%20Typora.png)
+   > ![](https://i.imgur.com/VlKySB4.png)
 
 5. **Faça o primeiro commit:**
 
-   ```cmd
+   ```bash
    git commit -m "Commit inicial: estrutura básica do projeto"
    ```
 
 > *Será exibida a mensagem abaixo confirmando o commit:*
 >
-> ![](https://ik.imagekit.io/46hheoxm3/2026-10-13%2001_49_38-Untitled_%20-%20Typora.png)
+> ![](https://i.imgur.com/AiKxCsl.png)
 
 <br />
 
@@ -189,7 +211,7 @@ echo print("Ola, Git!") > app.py
 > | **`feat`**             | **Funcionalidade:** Adiciona um novo recurso ou funcionalidade ao sistema. | `feat: adiciona autenticação por token JWT`                  |
 > | **`fix`**              | **Correção:** Corrige um erro, falha ou bug no código.       | `fix: corrige validação de e-mail no formulário`             |
 > | **`docs`**             | **Documentação:** Alterações exclusivamente na documentação (ex: README.md, wiki). | `docs: atualiza instruções de instalação no README`          |
-> | **`style`**            | **Estilização/Formatação:** Mudanças de formatação que não alteram a lógica do código (espaços, indentação, ponto e vírgula). | `style: ajusta indentação do arquivo app.py`                 |
+> | **`style`**            | **Estilização/Formatação:** Mudanças de formatação que não alteram a lógica do código (espaços, indentação, ponto e vírgula). | `style: ajusta indentação do arquivo main.py`                |
 > | **`refactor`**         | **Refatoração:** Mudança de estrutura do código sem alterar seu comportamento nem corrigir bugs. | `refactor: simplifica lógica da função de cálculo`           |
 > | **`test`**             | **Testes:** Adição, alteração ou criação de testes automatizados. | `test: adiciona testes unitários para rota de login`         |
 > | **`chore`**            | **Tarefas Diversas:** Atualizações de dependências, tarefas de build, ajustes de `.gitignore` ou configurações gerais. | `chore: atualiza dependências do arquivo requirements.txt`   |
@@ -201,54 +223,54 @@ echo print("Ola, Git!") > app.py
 
 6. Digite o comando abaixo para visualizar o histórico de commits:
 
-```cmd
+```bash
 git log
 ```
 
 > *Será exibida a lista de commits do repositório:*
 >
-> ![](https://ik.imagekit.io/46hheoxm3/2026-10-13%2001_51_37-Untitled_%20-%20Typora.png)
+> ![](https://i.imgur.com/SDwB9sk.png)
 
 ---
 
 ## Passo 4: Modificando Arquivos e Visualizando Alterações
 
-1. Adicione uma nova linha ao arquivo `app.py`:
+1. Adicione uma nova linha ao arquivo `main.py`:
 
-   ```cmd
-   echo print("Nova funcionalidade adicionada") >> app.py
+   ```bash
+   echo 'print("Nova funcionalidade adicionada")' >> main.py
    ```
 
 2. **Compare as alterações feitas em relação ao último commit:**
 
-   ```cmd
+   ```bash
    git diff
    ```
 
    > Na imagem abaixo, vemos o antes e o depois das alterações:
    >
-   > ![](https://ik.imagekit.io/46hheoxm3/2026-10-13%2001_54_50-Untitled_%20-%20Typora.png)
+   > ![](https://i.imgur.com/tiHiM6b.png)
 
-3. Adicione o arquivo alterado e faça um novo commit:
+3. Adicione o arquivo modificado na ***Stage Area*** e faça um novo commit:
 
-   ```cmd
-   git add app.py
-   git commit -m "feat: adiciona mensagem de nova funcionalidade no app.py"
+   ```bash
+   git add main.py
+   git commit -m "feat: adiciona mensagem de nova funcionalidade no main.py"
    ```
 
 > *Será exibida a mensagem abaixo confirmando o commit:*
 >
-> ![](https://ik.imagekit.io/46hheoxm3/2026-10-13%2001_57_48-Untitled_%20-%20Typora.png)
+> ![](https://i.imgur.com/aDQDqzi.png)
 
 4. Digite o comando abaixo para visualizar o histórico de commits:
 
-```cmd
+```bash
 git log
 ```
 
 > *Será exibida a lista atualizada de commits do repositório:*
 >
-> ![](https://ik.imagekit.io/46hheoxm3/2026-10-13%2001_59_01-Untitled_%20-%20Typora.png)
+> ![](https://i.imgur.com/ZCYoS3F.png)
 
 ---
 
@@ -260,50 +282,60 @@ O commit original continua no histórico, e por isso o `revert` é a forma segur
 
 ### 5.1 Criando um commit com erro
 
-1. Adicione uma linha indesejada ao `app.py` e faça o commit:
+1. Adicione uma linha indesejada ao `main.py` e faça o commit:
 
-   ```cmd
-   echo print("Linha com erro") >> app.py
-   git add app.py
-   git commit -m "feat: adiciona linha com erro no app.py"
+   ```bash
+   echo 'print("Linha com erro")' >> main.py
+   git add main.py
+   git commit -m "feat: adiciona linha com erro no main.py"
    ```
 
 2. Veja o histórico de forma compacta:
 
-   ```cmd
+   ```bash
    git log --oneline
    ```
 
-   > *O commit "adiciona linha com erro" aparece no topo da lista. Para sair da listagem, pressione **q**.*
+   > *O commit "adiciona linha com erro" aparece no topo da lista. Para sair da listagem, caso seja necessário, pressione **q**.*
+   >
+   > ![](https://i.imgur.com/3iMfo0h.png)
 
 ### 5.2 Revertendo o commit
 
 1. Desfaça o último commit:
 
-   ```cmd
+   ```bash
    git revert HEAD --no-edit
    ```
 
    > *`HEAD` representa o commit mais recente. A opção `--no-edit` aceita a mensagem automática e evita que o Git abra um editor de texto.*
+   >
+   > Observe na imagem abaixo que um novo commit foi criado, indicando que o commit anterior foi desfeito.
+   >
+   > ![](https://i.imgur.com/PG5HWI2.png)
 
 2. Confira o resultado:
 
-   ```cmd
-   type app.py
+   ```bash
+   type main.py
    git log --oneline
    ```
 
-   > *A linha com erro desapareceu do arquivo. No histórico, o commit original continua lá e acima dele surgiu um novo commit com a mensagem `Revert "feat: adiciona linha com erro no app.py"`.*
+   > *A linha com erro desapareceu do arquivo. No histórico, o commit original continua lá e acima dele surgiu um novo commit com a mensagem `Revert "feat: adiciona linha com erro no main.py"`.*
+   >
+   > ![](https://i.imgur.com/cMm8x8H.png)
 
 ### 5.3 Revertendo um commit mais antigo
 
 Para desfazer um commit que não é o último, informe o identificador (hash) dele, que aparece no `git log --oneline`:
 
-```cmd
+```bash
 git revert <hash> --no-edit
 ```
 
-> *Substitua `<hash>` pelos primeiros caracteres do commit, por exemplo `a1b2c3d`.*
+> *Substitua `<hash>` pelos primeiros caracteres do commit, por exemplo `9fdb9a9`, destacado na imagem abaixo.*
+>
+> ![](https://i.imgur.com/i4SmDTJ.png)
 
 <br />
 
@@ -324,43 +356,69 @@ git revert <hash> --no-edit
 
 ## Passo 6: Conectando com o GitHub e Enviando o Código
 
-1. Vá ao **GitHub**, clique no botão **"+"** (canto superior direito) → **New repository**.
+1. Acesse a sua conta no **GitHub**, clique no botão **"+"** (canto superior direito) → **New repository**.
+
+![](https://i.imgur.com/WJT0B3Y.png)
 
 2. Dê o nome de `aula_git`. **Não** marque as opções de criar README, .gitignore ou Licença. Clique em **Create repository**.
 
+![](https://i.imgur.com/VaFxHmC.png)
+
 3. Copie a URL do repositório gerado (exemplo: `https://github.com/seu-usuario/aula_git.git`).
 
-4. Volte ao CMD e vincule o repositório local ao remoto:
+![](https://i.imgur.com/1hxmhAo.png)
 
-   ```cmd
-   git remote add origin https://github.com/seu-usuario/aula_git.git
-   ```
+4. Volte ao Git Bash e vincule o repositório local ao remoto:
 
-   > *Substitua `seu-usuario` pelo seu usuário do GitHub.*
+```bash
+git remote add origin https://github.com/seu-usuario/aula_git.git
+```
+
+> *Substitua `seu-usuario` pelo seu usuário do GitHub.*
 
 5. Para confirmar o vínculo, utilize o comando abaixo:
 
-```cmd
+```bash
 git remote -v
 ```
 
+> Será exibida a mensagem abaixo, confirmando a conexão com o repositório remoto:
+>
+> ![](https://i.imgur.com/thksDnr.png)
+
 6. **Envie os dados ao GitHub:**
 
-```cmd
+```bash
 git push origin main
 ```
 
-> *Na primeira vez, o Windows abrirá uma janela do navegador pedindo para autenticar sua conta do GitHub.*
+> *Na primeira vez, o Windows abrirá a janela abaixo pedindo para autenticar sua conta do GitHub.*
+>
+> ![](https://i.imgur.com/B2gBUFM.png)
+>
+> 1. Clique no botão **Sign in with your browser** 
+> 2. Você será redirecionado para o navegador 
+> 3. Informe suas credenciais (usuário e senha) 
+> 4. Autorize a conexão da sua máquina com o GitHub
+> 5. Após concluir o processo de autenticação e autorizar o acesso ao repositório, volte para o terminal e refaça push.
 
-7. Digite o comando abaixo para visualizar o histórico de commits atualizados:
+7. Será exibida a mensagem abaixo, confirmando o commit
 
-```cmd
-git log
+![](https://i.imgur.com/rIM98F6.png)
+
+8. Digite o comando abaixo para visualizar o histórico de commits atualizados:
+
+```bash
+git log --oneline
 ```
 
-> *O histórico enviado inclui os commits do Passo 5: o commit com erro e o commit de reversão.*
+> *O histórico enviado inclui todos os commits, inclusive o commit de reversão.*
+>
+> ![](https://i.imgur.com/ro3LUBN.png)
 
-8. Volte no repositório do GitHub e atualize a página para visualizar os arquivos enviados.
+9. Volte no repositório do GitHub e atualize a página para visualizar os arquivos enviados.
+
+![](https://i.imgur.com/1v24Fnx.png)
 
 <br />
 
@@ -374,23 +432,50 @@ git log
 
 ## Passo 7: Simulando Alterações Remotas e Baixando com `git pull`
 
-1. Vá ao **GitHub** pelo navegador e abra o arquivo `README.md`.
+1. No **GitHub**, abra o arquivo `README.md` em modo de edição, clicando no **lápis (Edit)**:
 
-2. Clique no ícone de **lápis (Edit)**, adicione a linha: `## Descricao do Projeto` e faça o commit direto pelo site no botão **Commit changes...**.
+![](https://i.imgur.com/B0740Xa.png)
 
-3. Volte ao seu **CMD** e baixe essas alterações remotas para a sua máquina:
+2. Adicione a linha: `## Descricao do Projeto` no final do arquivo e faça o commit direto pelo site no botão **Commit changes...**.
 
-   ```cmd
-   git pull origin main
-   ```
+![](https://i.imgur.com/RUbTU7t.png)
 
-4. Veja que o arquivo `README.md` local foi atualizado com sucesso.
+3. O **GitHub** irá sugerir uma mensagem para o seu commit. Clique em **Commit changes** para concluir
 
-5. Digite o comando abaixo para visualizar o histórico de commits atualizados:
+<div align="center"><img src="https://i.imgur.com/t7UMuZV.png" title="source: imgur.com" /></div>
 
-```cmd
-git log
+4. Volte ao seu **Git Bash** e atualize o seu repositório local com as alterações realizadas no GitHub:
+
+```bash
+git pull origin main
 ```
+
+5. Será exibida a mensagem abaixo:
+
+![](https://i.imgur.com/Zrd5SiJ.png)
+
+6. Visualize o conteúdo do arquivo `README.md` da sua máquina e observe que ele foi atualizado com sucesso.
+
+```bash
+cat README.md
+```
+
+> **Resultado Esperado**
+>
+> ```markdown
+> # Projeto Aula Git
+> ## Descricao do Projeto
+> ```
+
+7. Digite o comando abaixo para visualizar o histórico de commits atualizados:
+
+```bash
+git log --oneline
+```
+
+> Observe que o commit feito no GitHub agora faz parte do histórico do seu repositório local
+>
+> ![](https://i.imgur.com/O5BPpxN.png)
 
 ---
 
@@ -398,28 +483,60 @@ git log
 
 Para simular o trabalho em outro computador ou pasta:
 
-1. Volte para a pasta `Documents`:
+1. Volte para a pasta do seu usuário:
 
-   ```cmd
-   cd %USERPROFILE%\Documents
+   ```bash
+   cd ~
    ```
 
-2. Clone o repositório `helloworld_python`, através do comando abaixo:
+2. Clone o repositório `clone_github`, através do comando abaixo:
 
-   ```cmd
-   git clone https://github.com/rafaelproinfo/helloworld_python
+   ```bash
+   git clone https://github.com/rafaelq80/clone_github.git
    ```
 
-3. Entre na pasta clonada e verifique os arquivos baixados:
+   > Será exibida a mensagem de confirmação abaixo:
+   >
+   > ![](https://i.imgur.com/CFmfEHM.png)
 
-   ```cmd
-   cd helloworld_python
-   dir
+3. Entre na pasta clonada e verifique os arquivos clonados:
+
+   ```bash
+   cd clone_github
+   ls
    ```
+
+   > Será exibido o arquivo `index.html`
+   >
+   > ```bash
+   > index.html
+   > ```
+
+4. Para abrir a página no navegador, execute o comando abaixo no terminal:
+
+```bash
+explorer index.html
+```
+
+> No MAC, utilize o comando:
+>
+> ```bash
+> open index.html
+> ```
+>
+> No Linux, utilize o comando:
+>
+> ```bash
+> xdg-open index.html
+> ```
+
+5. A página será aberta no seu navegado padrão:
+
+![](https://i.imgur.com/XpiZu38.png)
 
 ---
 
-## Tabela de Resumo dos Comandos Utilizados
+## Comandos Utilizados
 
 | Comando                       | Descrição                                                    |
 | :---------------------------- | :----------------------------------------------------------- |
